@@ -1,3 +1,7 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://mongo:dm4ever@ds028799.mlab.com:28799/discretka');
+var db = require('./access');
+
+//TODO change DB secure data
+mongoose.connect('mongodb://' + db.database);
+
 module.exports = mongoose.connection;

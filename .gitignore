@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.idea/inspectionProfiles/
+.idea/misc.xml
+access.js
+bower_components/
+node_modules/

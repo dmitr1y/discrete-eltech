@@ -4,9 +4,9 @@ import Table from './Table'
 export default class SmartTable extends Component {
 
     componentDidMount() {
-        let t = []
+        let t = [];
         for (let i = 0; i < 4; i++) {
-            t.push([])
+            t.push([]);
             for (let j = 0; j < 10; j++) {
                 t[i].push(<div className="number-wrap"></div>)
             }
@@ -15,29 +15,31 @@ export default class SmartTable extends Component {
             <div className="input-number-wrap">
                 <input type="number"/>
             </div>
-        )
+    )
+        ;
         t[0][1] = (
             <div className="input-number-wrap">
                 <input type="number"/>
             </div>
-        )
+    )
+        ;
 
         this.setState({table: t})
     }
 
-    solve (e) {
-        let inputs = this.refs.st.querySelectorAll('input[type="number"]')
-        let a = parseInt(inputs[0].value)
-        let b = parseInt(inputs[1].value)
+    solve(e) {
+        let inputs = this.refs.st.querySelectorAll('input[type="number"]');
+        let a = parseInt(inputs[0].value);
+        let b = parseInt(inputs[1].value);
         if (a && b) {
-            const url = 'http://discrete-eltech.eurodir.ru:8888/solve/pem?a=' + a + '&b=' + b
+            const url = 'http://evklid.edu.konstantinov.com.ru/solve/pem?a=' + a + '&b=' + b;
             fetch(url)
                 .then(response => response.json())
                 .then(table => {
-                    let newTable = table.slice()
+                let newTable = table.slice();
                     for (let i = 0; i < newTable.length; i++) {
                         for (let j = 0; j < newTable[i].length; j++) {
-                            if (i == 0 && j < 2) {
+                            if (i === 0 && j < 2) {
                                 newTable[i][j] = (
                                     <div className="input-number-wrap">
                                         <input type="number"/>
@@ -59,10 +61,10 @@ export default class SmartTable extends Component {
         }
     }
 
-    render () {
+    render() {
         return (
             <div className="smart-table">
-                {this.state ? 
+        {this.state ?
                     <div ref="st">
                         <Table data={this.state.table}/>
                         <div className="button-wrap">

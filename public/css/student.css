@@ -18,6 +18,7 @@
 #student-page .user .info > .field {
     margin-top: 14px;
 }
+
 #student-page .user .info > .field:first-child {
     margin-top: 0;
 }
