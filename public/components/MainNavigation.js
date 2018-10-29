@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 
 export default class MainNavigation extends Component {
@@ -8,10 +8,12 @@ export default class MainNavigation extends Component {
         className = 'main-navigation' >
             < ul
         ref = 'spoilers' >
-            {this.props.items.map(item = >
+            {this.props.items.map(item =>
             < li
         className = 'spoiler'
-        onClick = {e = > this.toggleSpoiler(e)
+        onClick = {e
+    =>
+        this.toggleSpoiler(e)
     }
         key = {item.url.substring(1)
     }>

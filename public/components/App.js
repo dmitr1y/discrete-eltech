@@ -1,5 +1,3 @@
-import React from 'react'
-import {browserHistory, Link} from 'react-router'
 import MainNavigation from './MainNavigation'
 import Header from './Header'
 

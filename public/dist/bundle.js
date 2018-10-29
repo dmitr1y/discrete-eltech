@@ -38901,7 +38901,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'a',
-                  {href: 'http://evklid.edu.konstantinov.com.ru/generatedoc', target: '_blank'},
+                  {href: 'https://edu.konstantinov.com.ru/app/evklid/generatedoc', target: '_blank'},
 	            'Отчет'
 	          )
 	        )
@@ -39117,7 +39117,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Group).call(this, props));
 
-          fetch('http://evklid.edu.konstantinov.com.ru/getGroup/' + parseInt(_this.props.params.groupID)).then(function (response) {
+          fetch('https://edu.konstantinov.com.ru/app/evklid/getGroup/' + parseInt(_this.props.params.groupID)).then(function (response) {
 	      return response.json();
 	    }).then(function (group) {
 	      _this.setState(group);
@@ -40251,7 +40251,7 @@
 	    value: function loadStudentInfo(props) {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/s/' + props.params.studentID + '/info').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/info').then(function (response) {
 	        return response.json();
 	      }).then(function (student) {
 	        _this2.setState(_extends({}, _this2.state, {
@@ -40259,7 +40259,7 @@
 	        }));
 	      });
 
-            fetch('http://evklid.edu.konstantinov.com.ru/s/' + props.params.studentID + '/tests').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/tests').then(function (response) {
 	        return response.json();
 	      }).then(function (tests) {
 	        console.log(_extends({}, _this2.state, {
@@ -40512,7 +40512,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Stream).call(this, props));
 
-          fetch('http://evklid.edu.konstantinov.com.ru/g/list').then(function (response) {
+          fetch('https://edu.konstantinov.com.ru/app/evklid/g/list').then(function (response) {
 	      return response.json();
 	    }).then(function (stream) {
 	      _this.setState(stream);
@@ -40767,7 +40767,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/nod').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/nod').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -40900,7 +40900,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/nod').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/nod').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -41443,7 +41443,7 @@
 	            var a = parseInt(inputs[0].value);
 	            var b = parseInt(inputs[1].value);
 	            if (a && b) {
-                    var url = 'http://evklid.edu.konstantinov.com.ru/solve/pem?a=' + a + '&b=' + b;
+                    var url = 'https://edu.konstantinov.com.ru/app/evklid/solve/pem?a=' + a + '&b=' + b;
 	                fetch(url).then(function (response) {
 	                    return response.json();
 	                }).then(function (table) {
@@ -41563,7 +41563,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/nod?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/nod?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -41584,7 +41584,7 @@
 	          return input.value !== '' ? parseInt(input.value) : '';
 	        });
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/nod/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/nod/', {
 	        method: 'post',
 	        body: JSON.stringify({
 	          input: this.state.input,
@@ -41747,7 +41747,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/axby1').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/axby1').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -41902,7 +41902,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/axby1').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/axby1').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -42092,7 +42092,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/axby1?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/axby1?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -42114,7 +42114,7 @@
 	        });
 	      });
 	      var output = [parseInt(this.refs.X.value), parseInt(this.refs.Y.value)];
-            fetch('http://evklid.edu.konstantinov.com.ru/test/axby1/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/axby1/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -42280,7 +42280,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/fraction').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fraction').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -42418,7 +42418,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/fraction').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fraction').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -42576,7 +42576,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/fraction?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/fraction?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -42600,7 +42600,7 @@
 	      var output = table[1].filter(function (val) {
 	        return val !== '' && val !== 0;
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/fraction/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/fraction/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -42727,7 +42727,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/convergents').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/convergents').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -42878,7 +42878,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/convergents').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/convergents').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -43027,7 +43027,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/convergents?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/convergents?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -43048,7 +43048,7 @@
 	          return input.value !== '' ? parseInt(input.value) : '';
 	        });
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/convergents/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/convergents/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -43174,7 +43174,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/inverse').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/inverse').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -43336,7 +43336,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/inverse').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/inverse').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -43509,7 +43509,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/inverse?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -43524,7 +43524,7 @@
 	    value: function check() {
 	      var _this3 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/inverse/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -43652,7 +43652,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/diophantine').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/diophantine').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -43878,7 +43878,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/diophantine').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/diophantine').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -44184,7 +44184,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/diophantine?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        console.log(example);
@@ -44214,7 +44214,7 @@
 	        x: [parseInt(this.refs.x0.value), parseInt(this.refs.x1.value)],
 	        y: [parseInt(this.refs.y0.value), parseInt(this.refs.y1.value)]
 	      };
-            fetch('http://evklid.edu.konstantinov.com.ru/test/diophantine/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -44416,7 +44416,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/fastDegree').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fastDegree').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -44552,7 +44552,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/fastDegree').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fastDegree').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -44714,7 +44714,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/fastDegree?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/fastDegree?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -44735,7 +44735,7 @@
 	          return input.value !== '' ? parseInt(input.value) : '';
 	        });
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/fastDegree/', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/fastDegree/', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -44872,7 +44872,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/conversion').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/conversion').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -45008,7 +45008,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/conversion').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/conversion').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -45175,7 +45175,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/conversion?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/conversion?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -45196,7 +45196,7 @@
 	          return input.value !== '' ? parseInt(input.value) : '';
 	        });
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/conversion', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/conversion', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'
@@ -45338,7 +45338,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/horner').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/horner').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        _this2.setState(example);
@@ -45545,7 +45545,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/solve/horner').then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/solve/horner').then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -45718,7 +45718,7 @@
 	    value: function refreshExample() {
 	      var _this2 = this;
 
-            fetch('http://evklid.edu.konstantinov.com.ru/test/horner?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner?id=' + (0, _getCookie2.default)('student_id')).then(function (response) {
 	        return response.json();
 	      }).then(function (example) {
 	        var inputs = _reactDom2.default.findDOMNode(_this2).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -45739,7 +45739,7 @@
 	          return input.value !== '' ? parseInt(input.value) : '';
 	        });
 	      });
-            fetch('http://evklid.edu.konstantinov.com.ru/test/horner', {
+            fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner', {
 	        method: 'post',
 	        headers: new Headers({
 	          'Content-Type': 'application/json'

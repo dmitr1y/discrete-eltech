@@ -1,10 +1,7 @@
 import {createDevTools} from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
-
-import React from 'react'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
 import {browserHistory, IndexRoute, Route, Router} from 'react-router'
 
 import {About, App, Group, Home, Stream, Student} from './components'

@@ -146,7 +146,9 @@ export default class Toolbar extends Component {
         type = "button"
         className = "btn btn-default btn-xs spoiler-trigger"
         data - toggle = "collapse"
-        onClick = {e = > this.toggle(e)
+        onClick = {e
+    =>
+        this.toggle(e)
     }>
         Расширенный
         алгоритм
@@ -167,7 +169,9 @@ export default class Toolbar extends Component {
         type = "button"
         className = "btn btn-default btn-xs spoiler-trigger"
         data - toggle = "collapse"
-        onClick = {e = > this.toggle(e)
+        onClick = {e
+    =>
+        this.toggle(e)
     }>
         Калькулятор
         < /button>
@@ -190,9 +194,7 @@ export default class Toolbar extends Component {
         < div > & divide;
     <
         /div>
-        < div > &
-    #
-        37;
+        < div > & #37;
     <
         /div>
         < /div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from '../Table'
 
 export default class DiophantineShow extends Component {
@@ -11,15 +11,12 @@ export default class DiophantineShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/diophantine')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/diophantine')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     render() {
@@ -160,7 +157,7 @@ export default class DiophantineShow extends Component {
         t
         < /p>
         < Table
-        data = {this.state.table.map((row, i) = > row.map((col, j) = >
+        data = {this.state.table.map((row, i) => row.map((col, j) =>
             < div
         className = {
             'number-wrap' +(
@@ -175,7 +172,9 @@ export default class DiophantineShow extends Component {
         < div
         className = "button-wrap" >
             < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

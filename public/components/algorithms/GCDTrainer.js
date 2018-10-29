@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
@@ -13,21 +13,18 @@ export default class GCDTrainer extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/nod')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > {
-            input.value = ''
-        input.classList.remove('ok')
-        input.classList.remove('wrong')
-    })
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/nod')
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => {
+                    input.value = ''
+                    input.classList.remove('ok')
+                    input.classList.remove('wrong')
+                })
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check(event) {
@@ -85,13 +82,15 @@ export default class GCDTrainer extends Component {
             таблицу:<
             /p>
             < Table
-            data = {this.state.table.map(row = > row.map(col = >
-            col !== '' ? (
-                < div className = "input-number-wrap" >
-                < input
+            data = {this.state.table.map(row => row.map(col =>
+                col !== '' ? (
+                    < div className = "input-number-wrap" >
+                    < input
             type = "number"
             data - original = {col}
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -116,7 +115,9 @@ export default class GCDTrainer extends Component {
             type = "number"
             data - original = {this.state.output
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -124,7 +125,9 @@ export default class GCDTrainer extends Component {
                 < /div>
                 < /code>
                 < button
-            onClick = {e = > this.refreshExample()
+            onClick = {e
+        =>
+            this.refreshExample()
         }>
             Обновить < /button>
             < /div>

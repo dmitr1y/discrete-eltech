@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import {Component, PropTypes} from 'react'
 import Table from '../Table'
 
 export default class GCDShow extends Component {
@@ -11,15 +11,12 @@ export default class GCDShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/nod')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/nod')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     render() {
@@ -59,7 +56,7 @@ export default class GCDShow extends Component {
         таблицу:<
         /p>
         < Table
-        data = {this.state.table.map((row, i) = > row.map((col, j) = >
+        data = {this.state.table.map((row, i) => row.map((col, j) =>
             < div
         className = {'number-wrap' +(i == 0 && j == row.length - 2 ? ' primary-answer' : '')} >
             {col}
@@ -73,7 +70,9 @@ export default class GCDShow extends Component {
     }<
         /code>
         < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

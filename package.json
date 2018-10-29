@@ -1,7 +1,6 @@
 {
-  "name": "rrr-basic-example",
-  "version": "0.0.0",
-  "repository": "reactjs/react-router-redux",
+  "name": "evklid-trainer",
+  "version": "0.0.1",
   "license": "MIT",
   "dependencies": {
     "object.values": "^1.0.3",
@@ -45,6 +44,6 @@
     "debug": "latest"
   },
   "scripts": {
-    "start": "index.js"
+    "start": "node index.js"
   }
 }

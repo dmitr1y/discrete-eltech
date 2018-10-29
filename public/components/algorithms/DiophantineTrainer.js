@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
@@ -13,21 +13,18 @@ export default class DiophantineTrainer extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/diophantine')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > {
-            input.value = ''
-        input.classList.remove('ok')
-        input.classList.remove('wrong')
-    })
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/diophantine')
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => {
+                    input.value = ''
+                    input.classList.remove('ok')
+                    input.classList.remove('wrong')
+                })
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check(event) {
@@ -135,7 +132,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.nod
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -154,7 +153,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.a
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -171,7 +172,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.b
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -188,7 +191,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.c
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -200,13 +205,15 @@ export default class DiophantineTrainer extends Component {
             коэффиценты
             уравнения < /p>
             < Table
-            data = {this.state.table.map(row = > row.map(col = >
-            col !== '' ? (
-                < div className = "input-number-wrap" >
-                < input
+            data = {this.state.table.map(row => row.map(col =>
+                col !== '' ? (
+                    < div className = "input-number-wrap" >
+                    < input
             type = "number"
             data - original = {col}
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -235,7 +242,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.x[0]
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             ref = "a1" / >
                 < i
@@ -250,7 +259,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.x[1]
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             ref = "b1" / >
                 < i
@@ -271,7 +282,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.y[0]
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             ref = "a2" / >
                 < i
@@ -286,7 +299,9 @@ export default class DiophantineTrainer extends Component {
             type = "number"
             data - original = {this.state.output.y[1]
         }
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             ref = "b2" / >
                 < i
@@ -299,7 +314,9 @@ export default class DiophantineTrainer extends Component {
             < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.refreshExample()
+            onClick = {e
+        =>
+            this.refreshExample()
         }>
             Обновить < /button>
             < /div>

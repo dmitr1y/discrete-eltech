@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
@@ -13,29 +13,24 @@ export default class DiophantineTest extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/test/diophantine?id=' + getCookie('student_id'))
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            console.log(example)
-        let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > input.value = ''
-    )
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine?id=' + getCookie('student_id'))
+            .then(response => response.json())
+            .then(example => {
+                console.log(example)
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => input.value = '')
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check() {
         let tableNode = ReactDOM.findDOMNode(this).querySelectorAll('.table tr');
-        let table = [].map.call(tableNode, tr = > {
-            return [].map.call(tr.querySelectorAll('input[type="number"]'), input = > {
+        let table = [].map.call(tableNode, tr => {
+            return [].map.call(tr.querySelectorAll('input[type="number"]'), input => {
                 return input.value !== '' ? parseInt(input.value) : ''
-            }
-    )
-    })
+            })
+        })
         let output = {
             nod: parseInt(this.refs.nod.value),
             a: parseInt(this.refs.a1.value),
@@ -44,7 +39,7 @@ export default class DiophantineTest extends Component {
             x: [parseInt(this.refs.x0.value), parseInt(this.refs.x1.value)],
             y: [parseInt(this.refs.y0.value), parseInt(this.refs.y1.value)],
         }
-        fetch('http://evklid.edu.konstantinov.com.ru/test/diophantine/', {
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine/', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -56,17 +51,12 @@ export default class DiophantineTest extends Component {
                 test_id: this.state.test_id,
             }),
         })
-            .then(response = > response.json()
-    )
-    .
-        then(response = > this.setState({
+            .then(response => response.json())
+            .then(response => this.setState({
                 ...this.state,
-            status
-    :
-        response.status,
-    }))
-    .
-        catch(console.error)
+                status: response.status,
+            }))
+            .catch(console.error)
     }
 
     render() {
@@ -201,7 +191,9 @@ export default class DiophantineTest extends Component {
             < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.check(e)
+            onClick = {e
+        =>
+            this.check(e)
         }>
             Проверить < /button>
             {

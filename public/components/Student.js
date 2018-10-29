@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import {Link} from 'react-router'
 import Table from './Table'
 
@@ -11,39 +11,27 @@ export default class Student extends Component {
     }
 
     loadStudentInfo(props) {
-        fetch('http://evklid.edu.konstantinov.com.ru/s/' + props.params.studentID + '/info')
-            .then(response = > response.json()
-    )
-    .
-        then(student = > {
-            this.setState({
-                ...this.state,
-            student
-    :
-        student,
-    })
-    })
-        ;
+        fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/info')
+            .then(response => response.json())
+            .then(student => {
+                this.setState({
+                    ...this.state,
+                    student: student,
+                })
+            });
 
-        fetch('http://evklid.edu.konstantinov.com.ru/s/' + props.params.studentID + '/tests')
-            .then(response = > response.json()
-    )
-    .
-        then(tests = > {
-            console.log({
-                ...this.state,
-            tests
-    :
-        tests,
-    })
-        ;
-        this.setState({
-                ...this.state,
-            tests
-    :
-        tests,
-    })
-    })
+        fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/tests')
+            .then(response => response.json())
+            .then(tests => {
+                console.log({
+                    ...this.state,
+                    tests: tests,
+                });
+                this.setState({
+                    ...this.state,
+                    tests: tests,
+                })
+            })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -119,62 +107,62 @@ export default class Student extends Component {
             < div >
             < h2 > Тесты < /h2>
             < ul >
-            {this.state.tests.tests.map(test = > {
-                return( < li
-        className = "student"
-        key = {test._id
-    }>
-        {
-            test.finished ?
-        <
-            div
-            className = "test" >
-                < span > {test.testName
-        }
-            -пройден - время
-            {
-                Math.floor(test.duration / 60)
-            }
-            мин
-            {
-                Math.floor(test.duration) % 60
-            }
-            с < /span>
-            < h3 > Решение
-            студента < /h3>
-            < h4 > Входные
-            данные < /h4>
-            < div > {test.object.input.join(', ')
-        }<
-            /div>
-            {
-                test.object.table ?
+            {this.state.tests.tests.map(test => {
+                return ( < li
+                className = "student"
+                key = {test._id
+            }>
+                {
+                    test.finished ?
+                <
+                    div
+                    className = "test" >
+                        < span > {test.testName
+                }
+                    -пройден - время
+                    {
+                        Math.floor(test.duration / 60)
+                    }
+                    мин
+                    {
+                        Math.floor(test.duration) % 60
+                    }
+                    с < /span>
+                    < h3 > Решение
+                    студента < /h3>
+                    < h4 > Входные
+                    данные < /h4>
+                    < div > {test.object.input.join(', ')
+                }<
+                    /div>
+                    {
+                        test.object.table ?
+                    <
+                        div >
+                        < h4 > Таблица < /h4>
+                        < Table
+                        data = {test.object.table.map(row => row.map(col =>
+                            < div
+                        className = "number-wrap" > {col} < /div>
+                    ))
+                    }
+                        />
+                        < /div>
+                    :
+                        null
+                    }
+                <
+                    h4 > Ответ < /h4>
+                    < div > {JSON.stringify(test.object.output)
+                }<
+                    /div>
+                    < /div>
+                :
+                    null
+                }
             <
-                div >
-                < h4 > Таблица < /h4>
-                < Table
-                data = {test.object.table.map(row = > row.map(col = >
-                    < div
-                className = "number-wrap" > {col} < /div>
-            ))
-            }
-                />
-                < /div>
-            :
-                null
-            }
-        <
-            h4 > Ответ < /h4>
-            < div > {JSON.stringify(test.object.output)
-        }<
-            /div>
-            < /div>
-        :
-            null
-        }
-    <
-        /li>)
-    })
+                /li>)
+            })
     }
     <
         /ul>

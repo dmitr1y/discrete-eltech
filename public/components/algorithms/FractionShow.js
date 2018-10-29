@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from '../Table'
 
 export default class FractionShow extends Component {
@@ -11,13 +11,11 @@ export default class FractionShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/fraction')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fraction')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
     }
 
     render() {
@@ -55,7 +53,7 @@ export default class FractionShow extends Component {
         таблицу:<
         /p>
         < Table
-        data = {this.state.table.map((row, i) = > row.map((col, j) = >
+        data = {this.state.table.map((row, i) => row.map((col, j) =>
             < div
         className = {
             'number-wrap' +(i == 1 && j == 2 ? ' primary-answer' : '')
@@ -66,15 +64,15 @@ export default class FractionShow extends Component {
         />
         < code > Ответ
     :
-        [{this.state.output.filter(x = > x !== 0
-    ).
-        join(', ')
+        [{this.state.output.filter(x => x !== 0).join(', ')
     }]<
         /code>
         < div
         className = "button-wrap" >
             < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

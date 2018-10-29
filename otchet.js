@@ -4,7 +4,7 @@ var TestSchema		= require("./schemas/test");
 var StudentSchema	= require("./schemas/students");
 
 var fs 			= require('fs');
-var officegen 	= require('officegen');
+var officegen = require('officegen');
 
 
 module.exports = () => {
@@ -58,9 +58,9 @@ module.exports = () => {
 
 	TestSchema.aggregate( agg ,(err, f) => {
 
-			if (err) console.log(err);
+        if (err) console.log(err);
 
-			ttr = {
+        ttr = {
 				"nod":  "Наибольший общий делитель",
 				"axby1":  "Поиск чисел, удовл. условию",
 				"conversion":  "Перевод систем счисления" ,
@@ -71,7 +71,7 @@ module.exports = () => {
 				"fraction": "Цепная дробь",
 				"inverse": "Обратные числа"
             };
-			totally = 0;
+        totally = 0;
 
 			var pObj = docx.createP({ align: 'center' });
 			pObj.addText ( 'Данные по задачам', subtitle );
@@ -96,7 +96,7 @@ module.exports = () => {
 				pObj.addText('К этому моменту в базе данных числится следующее количество студентов: '+count+'.', times);
 				StudentSchema.find({}, (err, docs)=>{
 
-					var pObj = docx.createP();
+                    var pObj = docx.createP();
 					pObj.addText('Последние зарегистрирвавшиеся: ', times);
 					for (i = 0; i < docs.length; i++){
 						pObj.addLineBreak	();
@@ -128,10 +128,10 @@ module.exports = () => {
 						for (i = 0; i < f.length; i++){
 							pObj.addLineBreak();
 							f[i]._id.group = f[i]._id.group == null ? 'Группа не указана' : f[i]._id.group;
-							pObj.addText ( f[i]._id.group+" - "+f[i].count+" чел.", times );
+                            pObj.addText(f[i]._id.group + " - " + f[i].count + " чел.", times);
 						}
 
-						docx.putPageBreak();
+                        docx.putPageBreak();
 						var pObj = docx.createP({ align: 'center' });
 						pObj.addText ( 'Данные о сервере', subtitle );
 
@@ -150,12 +150,11 @@ module.exports = () => {
 							console.log ( err );
 						});
 						docx.generate ( out );
-						return true;
+                        return true;
 					})
 
 				}).sort({_id: -1}).limit(5)
 			})
 	});
 
-}
-;
+};

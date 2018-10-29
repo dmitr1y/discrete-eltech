@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
@@ -13,21 +13,18 @@ export default class HornerTrainer extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/horner')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > {
-            input.value = ''
-        input.classList.remove('ok')
-        input.classList.remove('wrong')
-    })
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/horner')
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => {
+                    input.value = ''
+                    input.classList.remove('ok')
+                    input.classList.remove('wrong')
+                })
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check(event) {
@@ -44,24 +41,24 @@ export default class HornerTrainer extends Component {
     }
 
     polynomial(factors) {
-        return factors.map((c, i) = > {
+        return factors.map((c, i) => {
             let power = factors.length - i - 1
             return c != 0 ? (
             < span >
           {c < 0 ? '-' : i > 0 ? '+' : ''}
-        {
-            Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
-        }
-        {
-            power > 1 ?
-        <
-            span > x < sup > {power} < /sup></s
-            pan >
-        :
-            power == 1 ? 'x' : ''
-        }
+            {
+                Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
+            }
+            {
+                power > 1 ?
+            <
+                span > x < sup > {power} < /sup></s
+                pan >
+            :
+                power == 1 ? 'x' : ''
+            }
         </span>) : ''
-    })
+        })
     }
 
     render() {
@@ -87,13 +84,15 @@ export default class HornerTrainer extends Component {
         })<
             /p>
             < Table
-            data = {this.state.table.map(row = > row.map(col = >
-            col !== '' ? (
-                < div className = "input-number-wrap" >
-                < input
+            data = {this.state.table.map(row => row.map(col =>
+                col !== '' ? (
+                    < div className = "input-number-wrap" >
+                    < input
             type = "number"
             data - original = {col}
-            onBlur = {e = > this.check(e)
+            onBlur = {e
+        =>
+            this.check(e)
         }
             />
             < i
@@ -107,7 +106,9 @@ export default class HornerTrainer extends Component {
             < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.refreshExample()
+            onClick = {e
+        =>
+            this.refreshExample()
         }>
             Обновить < /button>
             < /div>

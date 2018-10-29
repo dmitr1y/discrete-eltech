@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
@@ -14,29 +14,24 @@ export default class ConvergentsTest extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/test/convergents?id=' + getCookie('student_id'))
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > input.value = ''
-    )
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/convergents?id=' + getCookie('student_id'))
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => input.value = '')
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check() {
         let tableNode = ReactDOM.findDOMNode(this).querySelectorAll('.table tr');
-        let table = [].map.call(tableNode, tr = > {
-            return [].map.call(tr.querySelectorAll('input[type="number"]'), input = > {
+        let table = [].map.call(tableNode, tr => {
+            return [].map.call(tr.querySelectorAll('input[type="number"]'), input => {
                 return input.value !== '' ? parseInt(input.value) : ''
-            }
-    )
-    })
-        fetch('http://evklid.edu.konstantinov.com.ru/test/convergents/', {
+            })
+        })
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/convergents/', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -47,17 +42,12 @@ export default class ConvergentsTest extends Component {
                 test_id: this.state.test_id,
             }),
         })
-            .then(response = > response.json()
-    )
-    .
-        then(response = > this.setState({
+            .then(response => response.json())
+            .then(response => this.setState({
                 ...this.state,
-            status
-    :
-        response.status,
-    }))
-    .
-        catch(console.error)
+                status: response.status,
+            }))
+            .catch(console.error)
     }
 
     render() {
@@ -85,19 +75,23 @@ export default class ConvergentsTest extends Component {
             < div
             className = "table" >
                 < Table
-            data = {this.state.table.map((row, i) = > row.map((col, j) = > {
-                return i == 1 && j < 2 ? < input
-            type = "number"
-            disabled = {true}
-            /> : <input type="number"/ >
-        }))
+            data = {this.state.table.map((row, i) => row.map((col, j) => {
+                return i == 1 && j < 2 ?
+            <
+                input
+                type = "number"
+                disabled = {true}
+                /> : <input type="number"/ >
+            }))
         }
             />
             < /div>
             < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.check(e)
+            onClick = {e
+        =>
+            this.check(e)
         }>
             Проверить < /button>
             {

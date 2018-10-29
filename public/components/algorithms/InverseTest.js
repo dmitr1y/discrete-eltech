@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
@@ -13,22 +13,18 @@ export default class InverseTest extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/test/inverse?id=' + getCookie('student_id'))
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > input.value = ''
-    )
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse?id=' + getCookie('student_id'))
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => input.value = '')
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check() {
-        fetch('http://evklid.edu.konstantinov.com.ru/test/inverse/', {
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse/', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -39,17 +35,12 @@ export default class InverseTest extends Component {
                 test_id: this.state.test_id,
             }),
         })
-            .then(response = > response.json()
-    )
-    .
-        then(response = > this.setState({
+            .then(response => response.json())
+            .then(response => this.setState({
                 ...this.state,
-            status
-    :
-        response.status,
-    }))
-    .
-        catch(console.error)
+                status: response.status,
+            }))
+            .catch(console.error)
     }
 
     render() {
@@ -105,7 +96,9 @@ export default class InverseTest extends Component {
                 < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.check(e)
+            onClick = {e
+        =>
+            this.check(e)
         }>
             Проверить < /button>
             {

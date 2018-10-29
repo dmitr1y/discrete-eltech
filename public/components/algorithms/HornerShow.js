@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from '../Table'
 
 export default class HornerShow extends Component {
@@ -11,34 +11,32 @@ export default class HornerShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/horner')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/horner')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
     }
 
     polynomial(factors) {
-        return factors.map((c, i) = > {
+        return factors.map((c, i) => {
             let power = factors.length - i - 1
             return c != 0 ? (
             < span >
           {c < 0 ? '-' : i > 0 ? '+' : ''}
-        {
-            Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
-        }
-        {
-            power > 1 ?
-        <
-            span > x < sup > {power} < /sup></s
-            pan >
-        :
-            power == 1 ? 'x' : ''
-        }
+            {
+                Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
+            }
+            {
+                power > 1 ?
+            <
+                span > x < sup > {power} < /sup></s
+                pan >
+            :
+                power == 1 ? 'x' : ''
+            }
         </span>) : ''
-    })
+        })
     }
 
     render() {
@@ -155,7 +153,7 @@ export default class HornerShow extends Component {
         так
         далее < /p>
         < Table
-        data = {this.state.table.map((row, i) = > row.map((col, j) = >
+        data = {this.state.table.map((row, i) => row.map((col, j) =>
             < div
         className = {
                 'number-wrap' +(i == 1 && (j > 0 && j < (row.length - 1)) ?
@@ -183,7 +181,9 @@ export default class HornerShow extends Component {
         < div
         className = "button-wrap" >
             < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

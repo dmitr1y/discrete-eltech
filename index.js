@@ -11,10 +11,9 @@ if (cluster.isMaster) {
         cluster.fork();
     }
 
-    cluster.on('exit', (worker, code, signal) = > {
+    cluster.on('exit', (worker, code, signal) => {
         console.log(`worker ${worker.process.pid} died`);
-})
-    ;
+    });
 } else {
     var http = require("http");
     var deepEqual = require("deep-equal");
@@ -209,7 +208,7 @@ if (cluster.isMaster) {
             }).sort({last_name: 1});
     });
 
-    app.get('/g/list', (req, res) = > {
+    app.get('/g/list', (req, res) => {
         aggr = [
             {
                 $group: {
@@ -223,122 +222,99 @@ if (cluster.isMaster) {
                 }
             }
         ];
-    StudentSchema.aggregate(aggr, (err, data) = > {
-        if(err) res.jsonp([]);
-else
-    {
-        megadata = [];
-        for (i = 0; i < data.length; i++)
-            if (data[i]._id == null)
-                megadata.push(["не указана", data[i].count]);
-            else
-                megadata.push([data[i]._id, data[i].count]);
-        res.jsonp(megadata)
-    }
-})
-})
-    ;
+        StudentSchema.aggregate(aggr, (err, data) => {
+            if (err) res.jsonp([]);
+            else {
+                megadata = [];
+                for (i = 0; i < data.length; i++)
+                    if (data[i]._id == null)
+                        megadata.push(["не указана", data[i].count]);
+                    else
+                        megadata.push([data[i]._id, data[i].count]);
+                res.jsonp(megadata)
+            }
+        })
+    });
 
-    app.get('/s/:student_id/tests', (req, res) = > {
+    app.get('/s/:student_id/tests', (req, res) => {
         var result = {count: 0, duration_avg: 0, tests: {}};
-    TestSchema.find({
-        _student: req.params.student_id,
-        finished: {$exists: true}
-    }, 'id testName started finished object', (err, data) = > {
-        if(err) res.jsonp(err);
-else
-    {
-        result.tests = JSON.parse(JSON.stringify(data));
-        for (i = 0; i < result.tests.length; i++) {
-            result.tests[i].duration = 0.001 * (Date.parse(result.tests[i].finished) - Date.parse(result.tests[i].started));
-            result.count++;
-            result.duration_avg += result.tests[i].duration / result.tests.length;
-        }
-        res.jsonp(result);
-    }
-}).
-    sort({finished: -1})
-})
-    ;
+        TestSchema.find({
+            _student: req.params.student_id,
+            finished: {$exists: true}
+        }, 'id testName started finished object', (err, data) => {
+            if (err) res.jsonp(err);
+            else {
+                result.tests = JSON.parse(JSON.stringify(data));
+                for (i = 0; i < result.tests.length; i++) {
+                    result.tests[i].duration = 0.001 * (Date.parse(result.tests[i].finished) - Date.parse(result.tests[i].started));
+                    result.count++;
+                    result.duration_avg += result.tests[i].duration / result.tests.length;
+                }
+                res.jsonp(result);
+            }
+        }).sort({finished: -1})
+    });
 
-    app.get('/s/:student_id/info', (req, res) = > {
-        StudentSchema.findById(req.params.student_id, (err, data) = > {
-        if(
-    !err
-)
-    res.jsonp(data);
-})
-    ;
-})
-    ;
+    app.get('/s/:student_id/info', (req, res) => {
+        StudentSchema.findById(req.params.student_id, (err, data) => {
+            if (!err) res.jsonp(data);
+        });
+    });
 
-    app.post('/s/:student_id/update', (req, res) = > {
-        if(req.body.hasOwnProperty('website')
-)
-    {
-        bitcly(req.body.website)
-            .then(url = > {
-            console.log(url);
-        req.body.website = url;
-        StudentSchema.findByIdAndUpdate(req.params.student_id, req.body, (err, doc) = > {
-            console.log(req.body);
-        if (err) res.jsonp({status: false, err: err});
-        else {
-            res.jsonp({status: true})
+    app.post('/s/:student_id/update', (req, res) => {
+        if (req.body.hasOwnProperty('website')) {
+            bitcly(req.body.website)
+                .then(url => {
+                    console.log(url);
+                    req.body.website = url;
+                    StudentSchema.findByIdAndUpdate(req.params.student_id, req.body, (err, doc) => {
+                        console.log(req.body);
+                        if (err) res.jsonp({status: false, err: err});
+                        else {
+                            res.jsonp({status: true})
+                        }
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            StudentSchema.findByIdAndUpdate(req.params.student_id, req.body, (err, doc) => {
+                console.log(req.body);
+                if (err) res.jsonp({status: false, err: err});
+                else {
+                    res.jsonp({status: true})
+                }
+            })
         }
-    })
-    })
-    .
-        catch(error = > {
-            console.log(error);
-    })
-        ;
-    }
-else
-    {
-        StudentSchema.findByIdAndUpdate(req.params.student_id, req.body, (err, doc) = > {
-            console.log(req.body);
-        if (err) res.jsonp({status: false, err: err});
-        else {
-            res.jsonp({status: true})
-        }
-    })
-    }
-})
-    ;
+    });
 
-    app.get('/s/search', (req, res) = > {
+    app.get('/s/search', (req, res) => {
         megadata = [];
-    callbacks = 0;
-    if (req.query.hasOwnProperty("q")) {
-        StudentSchema.find({
-            $or: [
-                {last_name: new RegExp('.*' + req.query.q + '.*', "i")},
-                {first_name: new RegExp('.*' + req.query.q + '.*', "i")}]
-        }, (err, data) = > {
-            if(
-        !err && data.length > 0
-    )
-        {
-            for (i = 0; i < data.length; i++)
-                megadata.push(data[i])
+        callbacks = 0;
+        if (req.query.hasOwnProperty("q")) {
+            StudentSchema.find({
+                $or: [
+                    {last_name: new RegExp('.*' + req.query.q + '.*', "i")},
+                    {first_name: new RegExp('.*' + req.query.q + '.*', "i")}]
+            }, (err, data) => {
+                if (!err && data.length > 0) {
+                    for (i = 0; i < data.length; i++)
+                        megadata.push(data[i])
+                }
+                res.jsonp(megadata);
+            });
+        } else {
+            megadata = {status: false, text: 'Missing q parameter. Nothing happens.'};
+            res.jsonp(megadata);
         }
-        res.jsonp(megadata);
-    })
-        ;
-    } else {
-        megadata = {status: false, text: 'Missing q parameter. Nothing happens.'};
-        res.jsonp(megadata);
-    }
-})
-    ;
+    });
 
-    app.get('/db/stats', (req, res) = > {
-        TestSchema.collection.stats((err, data) = > {
-        res.jsonp(data)
-})
-})
-    ;
+    app.get('/db/stats', (req, res) => {
+        TestSchema.collection.stats((err, data) => {
+            res.jsonp(data)
+        })
+    });
 
     app.get('/server/status.json', function (req, res) {
         server.getConnections(function (err, count) {
@@ -356,20 +332,18 @@ else
                 students: {}
             };
 
-            TestSchema.collection.stats((err, stats) = > {
+            TestSchema.collection.stats((err, stats) => {
                 callbacks++;
-            data.tests.size = stats.size + stats.totalIndexSize;
-            data.tests.count = stats.count;
-            if (callbacks == 2) res.jsonp(data);
-        })
-            ;
-            StudentSchema.collection.stats((err, stats) = > {
+                data.tests.size = stats.size + stats.totalIndexSize;
+                data.tests.count = stats.count;
+                if (callbacks == 2) res.jsonp(data);
+            });
+            StudentSchema.collection.stats((err, stats) => {
                 callbacks++;
-            data.students.size = stats.size + stats.totalIndexSize;
-            data.students.count = stats.count;
-            if (callbacks == 2) res.jsonp(data);
-        })
-            ;
+                data.students.size = stats.size + stats.totalIndexSize;
+                data.students.count = stats.count;
+                if (callbacks == 2) res.jsonp(data);
+            });
         });
     });
 
@@ -400,46 +374,46 @@ else
             };
 
             // Запрос к гугл сайтам
-            request(options, (err, response, body) = > {
+            request(options, (err, response, body) => {
                 website = null;
-            group = null;
-            body = JSON.parse(body);
-            console.log(body.toString());
-            if (body.feed.hasOwnProperty('entry')) {
-                title = body.feed.entry[0].title.$t;
-                group = isNaN(title.slice(-4)) ? null : title.slice(-4);
-                website = body.feed.entry[0].link[0].href;
-            }
-            console.log("website: " + website);
+                group = null;
+                body = JSON.parse(body);
+                console.log(body.toString());
+                if (body.feed.hasOwnProperty('entry')) {
+                    title = body.feed.entry[0].title.$t;
+                    group = isNaN(title.slice(-4)) ? null : title.slice(-4);
+                    website = body.feed.entry[0].link[0].href;
+                }
+                console.log("website: " + website);
 
-            student = new StudentSchema({
-                first_name: user.name.givenName,
-                last_name: user.name.familyName,
-                gender: user.gender,
-                email: user.emails[0].value,
-                photo: photo,
-                website: website,
-                group: group
-            });
-            console.log(student.toString());
-            student.save(function (err, student) {
-                if (err) {
-                    if (err.code == 11000) {
-                        StudentSchema.findOne({"email": user.emails[0].value}, "id", function (err, doc) {
-                            res.cookie('student_id', doc.id, {expires: new Date(Date.now() + 31536000000)});
+                student = new StudentSchema({
+                    first_name: user.name.givenName,
+                    last_name: user.name.familyName,
+                    gender: user.gender,
+                    email: user.emails[0].value,
+                    photo: photo,
+                    website: website,
+                    group: group
+                });
+                console.log(student.toString());
+                student.save(function (err, student) {
+                    if (err) {
+                        if (err.code == 11000) {
+                            StudentSchema.findOne({"email": user.emails[0].value}, "id", function (err, doc) {
+                                res.cookie('student_id', doc.id, {expires: new Date(Date.now() + 31536000000)});
+                                res.redirect('/');
+                            })
+                        } else {
+                            console.log(err);
                             res.redirect('/');
-                        })
+                        }
                     } else {
-                        console.log(err);
+                        res.cookie('student_id', student.id, {expires: new Date(Date.now() + 31536000000)});
                         res.redirect('/');
                     }
-                } else {
-                    res.cookie('student_id', student.id, {expires: new Date(Date.now() + 31536000000)});
-                    res.redirect('/');
-                }
-            });
+                });
 
-        })
+            })
         } else {
             res.redirect('/auth/google');
         }
@@ -454,19 +428,17 @@ else
         res.redirect('/');
     });
 
-    app.get('/generatedoc', (req, res) = > {
+    app.get('/generatedoc', (req, res) => {
         res.redirect('/');
-    // otchet();
-    // date = new Date();
-    // res.download(path.join(__dirname, '/public', 'otchet.docx'), 'Отчет сервера ' + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + '.docx');
-})
-    ;
+        // otchet();
+        // date = new Date();
+        // res.download(path.join(__dirname, '/public', 'otchet.docx'), 'Отчет сервера ' + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + '.docx');
+    });
 
-    app.get(/.*/, (req, res) = > {
+    app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, '/public', 'index.html'));
 
-})
-    ;
+    });
 
     if (cluster.worker.id == 1) {
         var j = schedule.scheduleJob('20 4 * * *', function () {

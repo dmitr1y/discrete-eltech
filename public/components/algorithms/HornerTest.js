@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
@@ -14,29 +14,24 @@ export default class HornerTest extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/test/horner?id=' + getCookie('student_id'))
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-        [].forEach.call(inputs, input = > input.value = ''
-    )
-        this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner?id=' + getCookie('student_id'))
+            .then(response => response.json())
+            .then(example => {
+                let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
+                [].forEach.call(inputs, input => input.value = '')
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     check() {
         let tableNode = ReactDOM.findDOMNode(this).querySelectorAll('.table tr');
-        let table = [].map.call(tableNode, tr = > {
-            return [].map.call(tr.querySelectorAll('input[type="number"]'), input = > {
+        let table = [].map.call(tableNode, tr => {
+            return [].map.call(tr.querySelectorAll('input[type="number"]'), input => {
                 return input.value !== '' ? parseInt(input.value) : ''
-            }
-    )
-    })
-        fetch('http://evklid.edu.konstantinov.com.ru/test/horner', {
+            })
+        })
+        fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -47,38 +42,33 @@ export default class HornerTest extends Component {
                 test_id: this.state.test_id,
             }),
         })
-            .then(response = > response.json()
-    )
-    .
-        then(response = > this.setState({
+            .then(response => response.json())
+            .then(response => this.setState({
                 ...this.state,
-            status
-    :
-        response.status,
-    }))
-    .
-        catch(console.error)
+                status: response.status,
+            }))
+            .catch(console.error)
     }
 
     polynomial(factors) {
-        return factors.map((c, i) = > {
+        return factors.map((c, i) => {
             let power = factors.length - i - 1
             return c != 0 ? (
             < span >
           {c < 0 ? '-' : i > 0 ? '+' : ''}
-        {
-            Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
-        }
-        {
-            power > 1 ?
-        <
-            span > x < sup > {power} < /sup></s
-            pan >
-        :
-            power == 1 ? 'x' : ''
-        }
+            {
+                Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''
+            }
+            {
+                power > 1 ?
+            <
+                span > x < sup > {power} < /sup></s
+                pan >
+            :
+                power == 1 ? 'x' : ''
+            }
         </span>) : ''
-    })
+        })
     }
 
     render() {
@@ -106,21 +96,25 @@ export default class HornerTest extends Component {
             < div
             className = "table" >
                 < Table
-            data = {this.state.table.map((row, i) = > row.map((col, j) = > {
-                return i == 0 && j == 0 ? < input
-            type = "number"
-            disabled = {true}
-            /> :
-            < input
-            type = "number" / >
-        }))
+            data = {this.state.table.map((row, i) => row.map((col, j) => {
+                return i == 0 && j == 0 ?
+            <
+                input
+                type = "number"
+                disabled = {true}
+                /> :
+                < input
+                type = "number" / >
+            }))
         }
             />
             < /div>
             < div
             className = "button-wrap" >
                 < button
-            onClick = {e = > this.check(e)
+            onClick = {e
+        =>
+            this.check(e)
         }>
             Проверить < /button>
             {

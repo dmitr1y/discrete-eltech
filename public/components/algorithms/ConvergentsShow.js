@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from '../Table'
 
 export default class ConvergentsShow extends Component {
@@ -11,15 +11,12 @@ export default class ConvergentsShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/convergents')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/convergents')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     render() {
@@ -69,7 +66,7 @@ export default class ConvergentsShow extends Component {
         таблицу:<
         /p>
         < Table
-        data = {this.state.table.map((row, i) = > row.map((col, j) = >
+        data = {this.state.table.map((row, i) => row.map((col, j) =>
             < div
         className = {
             'number-wrap' +(i == 2 && j > 1 ? ' primary-answer' : '')
@@ -80,15 +77,15 @@ export default class ConvergentsShow extends Component {
         />
         < code > Ответ
     :
-        [{output.map(f = > f[0] + '/' + f[1]
-    ).
-        join(', ')
+        [{output.map(f => f[0] + '/' + f[1]).join(', ')
     }]<
         /code>
         < div
         className = "button-wrap" >
             < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from './Table'
 
 export default class SmartTable extends Component {
@@ -32,11 +32,11 @@ export default class SmartTable extends Component {
         let a = parseInt(inputs[0].value);
         let b = parseInt(inputs[1].value);
         if (a && b) {
-            const url = 'http://evklid.edu.konstantinov.com.ru/solve/pem?a=' + a + '&b=' + b;
+            const url = 'https://edu.konstantinov.com.ru/app/evklid/solve/pem?a=' + a + '&b=' + b;
             fetch(url)
                 .then(response => response.json())
                 .then(table => {
-                let newTable = table.slice();
+                    let newTable = table.slice();
                     for (let i = 0; i < newTable.length; i++) {
                         for (let j = 0; j < newTable[i].length; j++) {
                             if (i === 0 && j < 2) {

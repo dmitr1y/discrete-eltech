@@ -7,10 +7,10 @@ export default function Table({data}) {
     className = "table-wrap" >
         < table >
         < tbody >
-        {data.map((row, i) = >
+        {data.map((row, i) =>
         < tr
     key = {i} >
-        {row.map((col, j) = >
+        {row.map((col, j) =>
         < td
     key = {j} > {col} < /td>
 )

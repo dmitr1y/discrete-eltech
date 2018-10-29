@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Table from '../Table'
 
 export default class ConversionShow extends Component {
@@ -11,15 +11,12 @@ export default class ConversionShow extends Component {
     state = {}
 
     refreshExample() {
-        fetch('http://evklid.edu.konstantinov.com.ru/solve/conversion')
-            .then(response = > response.json()
-    )
-    .
-        then(example = > {
-            this.setState(example)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/conversion')
+            .then(response => response.json())
+            .then(example => {
+                this.setState(example)
+            })
+            .catch(console.error)
     }
 
     render() {
@@ -52,7 +49,7 @@ export default class ConversionShow extends Component {
     <
         /p>
         < Table
-        data = {this.state.table.map(row = > row.map(col = >
+        data = {this.state.table.map(row => row.map(col =>
             < div
         className = "number-wrap" > {col} < /div>
     ))
@@ -71,7 +68,9 @@ export default class ConversionShow extends Component {
         < div
         className = "button-wrap" >
             < button
-        onClick = {e = > this.refreshExample()
+        onClick = {e
+    =>
+        this.refreshExample()
     }>
         Обновить < /button>
         < /div>

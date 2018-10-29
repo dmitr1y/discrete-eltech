@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import values from 'object.values'
 import {Link} from 'react-router'
 
@@ -6,15 +6,12 @@ export default class Stream extends Component {
 
     constructor(props) {
         super(props);
-        fetch('http://evklid.edu.konstantinov.com.ru/g/list')
-            .then(response = > response.json()
-    )
-    .
-        then(stream = > {
-            this.setState(stream)
-    })
-    .
-        catch(console.error)
+        fetch('https://edu.konstantinov.com.ru/app/evklid/g/list')
+            .then(response => response.json())
+            .then(stream => {
+                this.setState(stream)
+            })
+            .catch(console.error)
     }
 
     static humans(count) {
@@ -38,7 +35,7 @@ export default class Stream extends Component {
             < h1 > Группы < /h1>
             < ul
         className = "groups" >
-        {this.state ? values(this.state).map(group = >
+        {this.state ? values(this.state).map(group =>
             < li className = "group"
         key = {group[0]} >
             < Link
