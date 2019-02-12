@@ -2,10 +2,14 @@ version: '2'
 services:
   evklid:
     build: .
-    volumes:
-      - .:/usr/discrete-eltech
     ports:
       - '8888:8888'
+    environment:
+      - DATABASE=user:secret@host:27017/database_name
+      - GOOGLE_CLIENT_SECRET=""
+      - GOOGLE_CLIENT_ID=""
+      - GOOGLE_CALBACK_URL=""
+      - GOOGLE_CALBACK_URL_LOGIN=""
     depends_on:
       - mongo
   mongo:

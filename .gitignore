@@ -2,6 +2,6 @@
 /.idea/
 .idea/inspectionProfiles/
 .idea/misc.xml
-/access.js
+#/access.js
 bower_components/
 node_modules
