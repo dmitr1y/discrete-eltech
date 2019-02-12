@@ -37,7 +37,7 @@ if (cluster.isMaster) {
 
 
     var app = express();
-    server = http.createServer(app).listen(80);
+    server = http.createServer(app).listen(8888);
     console.log('diophantine');
 
     app.use(bodyParser.json());
