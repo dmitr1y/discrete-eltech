@@ -24,9 +24,9 @@ if (cluster.isMaster) {
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var discretka = require("./discretka.js");
     var session = require('express-session');
-    var cookieParser = require('cookie-parser')
-    var schedule = require('node-schedule')
-    var request = require('request')
+    var cookieParser = require('cookie-parser');
+    var schedule = require('node-schedule');
+    var request = require('request');
     // database
     var db = require("./db");
     var TestSchema = require("./schemas/test");
@@ -84,8 +84,7 @@ if (cluster.isMaster) {
                     b = parseInt(req.query.b);
                     res.jsonp(discretka[req.params.method].solve(a, b));
                 } else res.jsonp();
-            }
-            else res.jsonp(discretka[req.params.method].solve());
+            } else res.jsonp(discretka[req.params.method].solve());
         } else {
             res.status(404).jsonp({"result": "404, " + req.params.method + " not found."})
         }
@@ -195,16 +194,14 @@ if (cluster.isMaster) {
                 if (err) {
                     console.log(err);
                     res.jsonp([]);
-                }
-                else res.jsonp(data);
+                } else res.jsonp(data);
             }).sort({last_name: 1});
         else
             StudentSchema.find({group: req.params.group_id}, function (err, data) {
                 if (err) {
                     console.log(err);
                     res.jsonp([]);
-                }
-                else res.jsonp(data);
+                } else res.jsonp(data);
             }).sort({last_name: 1});
     });
 

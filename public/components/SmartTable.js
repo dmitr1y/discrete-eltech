@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Table from './Table'
+import React from "react";
 
 export default class SmartTable extends Component {
 

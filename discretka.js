@@ -103,8 +103,7 @@ var euclidex = {
                 if (result.output === 1 && !badTableSize(result.table[0]) && abiggerthenb) break;
             } while (true);
             return this.build_table(result, sign);
-        }
-        else {
+        } else {
             result = nod.solve(a, b, "no-debug");
             if (result.output === 1) {
                 return this.build_table(result, sign);

@@ -3,27 +3,26 @@ const path = require('path');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-  entry: './app.js',
-  devServer: {
-    outputPath: path.join(__dirname, './dist'),
-  },
-  output: {
-    path: path.join(__dirname, './dist'),
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new WriteFilePlugin()
-  ],
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      include: __dirname,
-    }]
-  }
+    entry: './app.js',
+    devServer: {
+        outputPath: path.join(__dirname, './dist'),
+    },
+    output: {
+        path: path.join(__dirname, './dist'),
+        filename: 'bundle.js'
+    },
+    plugins: [
+        new WriteFilePlugin()
+    ],
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            loader: 'babel',
+            exclude: /node_modules/,
+            include: __dirname,
+        }]
+    }
 }
-
 
 
 // This will make the redux-simpler-router module resolve to the
@@ -32,11 +31,11 @@ module.exports = {
 var src = path.join(__dirname, '..', '..', 'src')
 var fs = require('fs')
 if (fs.existsSync(src)) {
-  // Use the latest src
-  module.exports.resolve = { alias: { 'react-router-redux': src } }
-  module.exports.module.loaders.push({
-    test: /\.js$/,
-    loaders: ['babel'],
-    include: src
-  });
+    // Use the latest src
+    module.exports.resolve = {alias: {'react-router-redux': src}}
+    module.exports.module.loaders.push({
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: src
+    });
 }

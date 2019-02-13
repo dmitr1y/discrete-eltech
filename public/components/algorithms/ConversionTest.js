@@ -3,25 +3,26 @@ import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
+import React from "react";
 
 export default class ConversionTest extends Component {
 
-    constructor(props) {
-        super(props)
-        this.refreshExample()
-    }
+    state = {};
 
-    state = {}
+    constructor(props) {
+        super(props);
+        this.refreshExample();
+    }
 
     refreshExample() {
         fetch('https://edu.konstantinov.com.ru/app/evklid/test/conversion?id=' + getCookie('student_id'))
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
-                [].forEach.call(inputs, input => input.value = '')
+                [].forEach.call(inputs, input => input.value = '');
                 this.setState(example)
             })
-            .catch(console.error)
+            .catch(console.error);
     }
 
     check() {
@@ -53,84 +54,47 @@ export default class ConversionTest extends Component {
 
     render() {
         return (
-            < div
-        className = "content-wrap" >
-            < Toolbar / >
-            < h1 > Перевод
-        из
-        одной
-        системы
-        счисления
-        в
-        другую < /h1>
-        < h2 > Контроль < /h2>
-        {
-            this.state.input ?
-        <
-            div >
-            < p > Певевести
-            {
-                this.state.input[0]
-            }
-        <
-            sub > {this.state.input[1]
-        }<
-            /sub> в систему счисления с
-            основанием
-            {
-                this.state.input[2]
-            }
-        <
-            /p>
-            < div
-            className = "table" >
-                < Table
-            data = {this.state.table.map((row, i) => row.map((col, j) => {
-                return
-            <
-                input
-                type = "number" / >
-            }))
-        }
-            />
-            < /div>
-            < code
-            className = "answer-area" >
-                Ответ
-        : &
-            nbsp;
-        <
-            div
-            className = "input-number-wrap" >
-                < input
-            type = "number"
-            ref = "output" / >
-                < /div>
-                < /code>
-                < div
-            className = "button-wrap" >
-                < button
-            onClick = {e
-        =>
-            this.check(e)
-        }>
-            Проверить < /button>
-            {
-                this.state.status !== undefined ?
-                    (this.state.status ?
-                    < i className = "checker ok" > < /i> : <i className="checker wrong"></i >
-            )
-            :
-                null
-            }
-        <
-            /div>
-            < /div>
-        :
-            null
-        }
-    <
-        /div>
-    )
+            <div className="content-wrap">
+                <Toolbar/>
+                <h1> Перевод из одной системы счисления в другую</h1>
+                <h2> Контроль</h2>
+                {this.state.input ?
+                    <div>
+                        <p>
+                            Певевести {this.state.input[0]} <sub> {this.state.input[1]}</sub> в систему
+                            счисления с основанием {this.state.input[2]}
+                        </p>
+                        <div className="table">
+                            <Table data={this.state.table.map((row, i) => row.map((col, j) => {
+                                return
+                                <input type="number"/>
+                            }))
+                            }
+                            />
+                        </div>
+                        <code className="answer-area">
+                            Ответ: &nbsp;
+                            <div className="input-number-wrap">
+                                <input type="number" ref="output"/>
+                            </div>
+                        </code>
+                        <div className="button-wrap">
+                            <button onClick={e => this.check(e)}>Проверить</button>
+                            {
+                                this.state.status !== undefined ?
+                                    (this.state.status ?
+                                            <i className="checker ok">
+                                            </i> : <i className="checker wrong"></i>
+                                    )
+                                    :
+                                    null
+                            }
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+            </div>
+        )
     }
 }

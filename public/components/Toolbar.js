@@ -138,108 +138,64 @@ export default class Toolbar extends Component {
 
     render() {
         return (
-            <div className="panel-group" ref="root">
-        {this.props.smartTable ?
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-            < button
-        type = "button"
-        className = "btn btn-default btn-xs spoiler-trigger"
-        data - toggle = "collapse"
-        onClick = {e
-    =>
-        this.toggle(e)
-    }>
-        Расширенный
-        алгоритм
-        Евклида
-        < /button>
-                        </div>
-                        <div className="panel-collapse collapse out">
-                            <div className="panel-body">
-            < SmartTable / >
-                            </div>
-                        </div>
-                    </div>
-                    : null
-                }
+            <div className="panel-group" ref="root">{this.props.smartTable ? <div className="panel panel-default">
+                <div className="panel-heading">
+                    <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse"
+                            onClick={e => this.toggle(e)}>Расширенный алгоритм Евклида
+                    </button>
+                </div>
+                <div className="panel-collapse collapse out">
+                    <div className="panel-body"><SmartTable/></div>
+                </div>
+            </div> : null}
                 <div className="panel panel-default">
                     <div className="panel-heading">
-            < button
-        type = "button"
-        className = "btn btn-default btn-xs spoiler-trigger"
-        data - toggle = "collapse"
-        onClick = {e
-    =>
-        this.toggle(e)
-    }>
-        Калькулятор
-        < /button>
+                        <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse"
+                                onClick={e => this.toggle(e)}>Калькулятор
+                        </button>
                     </div>
                     <div className="panel-collapse collapse out">
                         <div className="panel-body">
                             <div className="calculator">
-            < div
-        className = "input"
-        id = "input" > < /div>
-            < div
-        className = "buttons" >
-            < div
-        className = "operators" >
-            < div > + < /div>
-            < div > - < /div>
-            < div > & times;
-    <
-        /div>
-        < div > & divide;
-    <
-        /div>
-        < div > & #37;
-    <
-        /div>
-        < /div>
-        < div
-        className = "leftPanel" >
-            < div
-        className = "numbers" >
-            < div > 7 < /div>
-            < div > 8 < /div>
-            < div > 9 < /div>
-            < /div>
-            < div
-        className = "numbers" >
-            < div > 4 < /div>
-            < div > 5 < /div>
-            < div > 6 < /div>
-            < /div>
-            < div
-        className = "numbers" >
-            < div > 1 < /div>
-            < div > 2 < /div>
-            < div > 3 < /div>
-            < /div>
-            < div
-        className = "numbers" >
-            < div > 0 < /div>
-            < div >
-    .<
-        /div>
-        < div
-        id = "clear" > C < /div>
-            < /div>
-            < /div>
-            < div
-        className = "equal"
-        id = "result" >= < /div>
-            < /div>
+                                <div className="input" id="input"></div>
+                                <div className="buttons">
+                                    <div className="operators">
+                                        <div> +</div>
+                                        <div> -</div>
+                                        <div> & times;</div>
+                                        <div> & divide;</div>
+                                        <div> & #37;</div>
+                                    </div>
+                                    <div className="leftPanel">
+                                        <div className="numbers">
+                                            <div> 7</div>
+                                            <div> 8</div>
+                                            <div> 9</div>
+                                        </div>
+                                        <div className="numbers">
+                                            <div> 4</div>
+                                            <div> 5</div>
+                                            <div> 6</div>
+                                        </div>
+                                        <div className="numbers">
+                                            <div> 1</div>
+                                            <div> 2</div>
+                                            <div> 3</div>
+                                        </div>
+                                        <div className="numbers">
+                                            <div> 0</div>
+                                            <div>.</div>
+                                            <div id="clear"> C</div>
+                                        </div>
+                                    </div>
+                                    <div className="equal" id="result">=</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            </div>)
     }
 }
-
 Toolbar.propTypes = {smartTable: React.PropTypes.bool};
 Toolbar.defaultProps = {smartTable: false};

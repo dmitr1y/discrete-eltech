@@ -1,4 +1,5 @@
 import {Link} from 'react-router'
+import React from "react";
 
 function getCookie(name) {
     var matches = document.cookie.match(new RegExp(
@@ -10,42 +11,15 @@ function getCookie(name) {
 export default function Header() {
     const studentID = getCookie('student_id');
     return (
-        < header
-    id = "header" >
-        < nav
-    className = "menu" >
-        < ul >
-        < li > < Link
-    to = "/" > < img
-    src = "/images/leti.png"
-    className = "logo"
-    alt = "ЛЭТИ"
-    title = "Home" / > < /Link></
-    li >
-    < li > < Link
-    to = "/about" > О
-    проекте < /Link></
-    li >
-    < li > < Link
-    to = "/group" > Список
-    групп < /Link></
-    li >
-    < /ul>
-    {
-        studentID ?
-    <
-        Link
-        to = {'/student/' +studentID}
-        className = "button" > Личный
-        кабинет < /Link> :
-        //TODO check working
-        < a
-        href = "/auth/google"
-        target = "_top"
-        className = "button" > Войти
-        через
-        Google < /a>}
-        < /nav>
-        < /header>
-    )
+        <header id="header">
+            <nav className="menu">
+                <ul>
+                    <li><Link to="/"> <img src="/images/leti.png" className="logo" alt="ЛЭТИ" title="Home"/> </Link>
+                    </li>
+                    <li><Link to="/about"> О проекте </Link></li>
+                    <li><Link to="/group"> Список групп </Link></li>
+                </ul>
+                {studentID ? <Link to={'/student/' + studentID} className="button"> Личный кабинет </Link> :/*TODO check working*/
+                    <a href="/auth/google" target="_top" className="button"> Войти через Google </a>}</nav>
+        </header>)
 }
