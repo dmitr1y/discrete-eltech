@@ -1,12 +1,14 @@
-var envs = require('envs');
+// let envs = require('envs');
 
-var access = {
-    database: envs('DATABASE'),
-    // database: "root:password@mongo:27017/evklid",
-    googleClientSecret: envs('GOOGLE_CLIENT_SECRET'),
-    googleClientID: envs('GOOGLE_CLIENT_ID'),
-    googleCallbackURL: envs('GOOGLE_CALBACK_URL'),
-    googleCallbackURLLogin: envs('GOOGLE_CALBACK_URL_LOGIN'),
+access = {
+    database: 'user:pass@host:27017/db_name',
+    port: 8888,
+    domain: 'http://localhost:8888',
+    googleClientSecret: '',
+    googleClientID: '',
+    googleCallbackURL: 'http://localhost:8888/auth/google/callback',
+    googleCallbackURLLogin: 'http://localhost:8888//login',
 };
+
 
 module.exports = access;
