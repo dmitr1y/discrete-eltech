@@ -1,6 +1,7 @@
 import {Component, PropTypes} from 'react'
 import Table from '../Table'
 import React from "react";
+import * as access from "../../../access";
 
 export default class GCDShow extends Component {
 
@@ -12,7 +13,7 @@ export default class GCDShow extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/nod')
+        fetch(access.domain + '/solve/nod')
             .then(response => response.json())
             .then(example => {
                 this.setState(example)

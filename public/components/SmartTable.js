@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Table from './Table'
 import React from "react";
+import * as access from "../../access";
 
 export default class SmartTable extends Component {
 
@@ -33,7 +34,7 @@ export default class SmartTable extends Component {
         let a = parseInt(inputs[0].value);
         let b = parseInt(inputs[1].value);
         if (a && b) {
-            const url = 'https://edu.konstantinov.com.ru/app/evklid/solve/pem?a=' + a + '&b=' + b;
+            const url = access.domain + '/solve/pem?a=' + a + '&b=' + b;
             fetch(url)
                 .then(response => response.json())
                 .then(table => {

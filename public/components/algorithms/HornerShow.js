@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Table from '../Table'
 import React from "react";
+import * as access from "../../../access";
 
 export default class HornerShow extends Component {
 
@@ -12,7 +13,7 @@ export default class HornerShow extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/horner')
+        fetch(access.domain + '/solve/horner')
             .then(response => response.json())
             .then(example => {
                 this.setState(example)

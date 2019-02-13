@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
 import React from "react";
+import * as access from "../../../access";
 
 export default class InverseTest extends Component {
 
@@ -14,7 +15,7 @@ export default class InverseTest extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse?id=' + getCookie('student_id'))
+        fetch(access.domain + '/test/inverse?id=' + getCookie('student_id'))
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -25,7 +26,7 @@ export default class InverseTest extends Component {
     }
 
     check() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/inverse/', {
+        fetch(access.domain + '/test/inverse/', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'

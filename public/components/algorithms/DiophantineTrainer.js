@@ -2,6 +2,7 @@ import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import React from "react";
+import * as access from "../../../access";
 
 export default class DiophantineTrainer extends Component {
 
@@ -13,7 +14,7 @@ export default class DiophantineTrainer extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/diophantine')
+        fetch(access.domain + '/solve/diophantine')
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript

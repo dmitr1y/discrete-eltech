@@ -4,6 +4,7 @@ import Table from '../Table'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
 import React from "react";
+import * as access from "../../../access";
 
 export default class GCDTest extends Component {
 
@@ -15,7 +16,7 @@ export default class GCDTest extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/nod?id=' + getCookie('student_id'))
+        fetch(access.domain + '/test/nod?id=' + getCookie('student_id'))
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -32,7 +33,7 @@ export default class GCDTest extends Component {
                 return input.value !== '' ? parseInt(input.value) : ''
             })
         });
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/nod/', {
+        fetch(access.domain + '/test/nod/', {
             method: 'post',
             body: JSON.stringify({
                 input: this.state.input,

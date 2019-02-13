@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
 import React from "react";
+import * as access from "../../../access";
 
 export default class DiophantineTest extends Component {
 
@@ -14,7 +15,7 @@ export default class DiophantineTest extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine?id=' + getCookie('student_id'))
+        fetch(access.domain + '/test/diophantine?id=' + getCookie('student_id'))
             .then(response => response.json())
             .then(example => {
                 console.log(example);
@@ -40,7 +41,7 @@ export default class DiophantineTest extends Component {
             x: [parseInt(this.refs.x0.value), parseInt(this.refs.x1.value)],
             y: [parseInt(this.refs.y0.value), parseInt(this.refs.y1.value)],
         };
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/diophantine/', {
+        fetch(access.domain + '/test/diophantine/', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'

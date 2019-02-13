@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Table from '../Table'
 import getCookie from './getCookie'
 import React from "react";
+import * as access from "../../../access";
 
 export default class HornerTest extends Component {
 
@@ -14,7 +15,7 @@ export default class HornerTest extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner?id=' + getCookie('student_id'))
+        fetch(access.domain + '/test/horner?id=' + getCookie('student_id'))
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript
@@ -31,7 +32,7 @@ export default class HornerTest extends Component {
                 return input.value !== '' ? parseInt(input.value) : ''
             })
         });
-        fetch('https://edu.konstantinov.com.ru/app/evklid/test/horner', {
+        fetch(access.domain + '/test/horner', {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
 import React from "react";
+import * as access from "../../../access";
 
 export default class ConversionTrainer extends Component {
 
@@ -14,7 +15,7 @@ export default class ConversionTrainer extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/conversion')
+        fetch(access.domain + '/solve/conversion')
             .then(response => response.json())
             .then(example => {
                 let inputs = ReactDOM.findDOMNode(this).querySelectorAll('input[type="number"]'); // Fuck JavaScript

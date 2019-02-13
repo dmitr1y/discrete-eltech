@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Table from '../Table'
 import React from "react";
+import * as access from "../../../access";
 
 export default class FastDegreeShow extends Component {
 
@@ -12,7 +13,7 @@ export default class FastDegreeShow extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/fastDegree')
+        fetch(access.domain + '/solve/fastDegree')
             .then(response => response.json())
             .then(example => {
                 this.setState(example)

@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Table from '../Table'
 import React from "react";
+import * as access from "../../../access";
 
 export default class ConversionShow extends Component {
 
@@ -12,7 +13,7 @@ export default class ConversionShow extends Component {
     }
 
     refreshExample() {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/solve/conversion')
+        fetch(access.domain + '/solve/conversion')
             .then(response => response.json())
             .then(example => {
                 this.setState(example)

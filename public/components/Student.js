@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {Link} from 'react-router'
 import Table from './Table'
 import React from "react";
+import * as access from "../../access";
 
 export default class Student extends Component {
 
@@ -12,7 +13,7 @@ export default class Student extends Component {
     }
 
     loadStudentInfo(props) {
-        fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/info')
+        fetch(access.domain + '/s/' + props.params.studentID + '/info')
             .then(response => response.json())
             .then(student => {
                 this.setState({
@@ -21,7 +22,7 @@ export default class Student extends Component {
                 })
             });
 
-        fetch('https://edu.konstantinov.com.ru/app/evklid/s/' + props.params.studentID + '/tests')
+        fetch(access.domain + '/s/' + props.params.studentID + '/tests')
             .then(response => response.json())
             .then(tests => {
                 console.log({

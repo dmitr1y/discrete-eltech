@@ -2,12 +2,13 @@ import {Component} from 'react'
 import values from 'object.values'
 import {Link} from 'react-router'
 import React from "react";
+import * as access from "../../access";
 
 export default class Stream extends Component {
 
     constructor(props) {
         super(props);
-        fetch('https://edu.konstantinov.com.ru/app/evklid/g/list')
+        fetch(access.domain + '/g/list')
             .then(response => response.json())
             .then(stream => {
                 this.setState(stream)

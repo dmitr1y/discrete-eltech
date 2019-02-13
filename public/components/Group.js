@@ -2,12 +2,13 @@ import {Component} from 'react'
 import values from 'object.values'
 import {Link} from 'react-router'
 import React from "react";
+import * as access from "../../access";
 
 export default class Group extends Component {
 
     constructor(props) {
         super(props);
-        fetch('https://edu.konstantinov.com.ru/app/evklid/getGroup/' + parseInt(this.props.params.groupID))
+        fetch(access.domain + '/getGroup/' + parseInt(this.props.params.groupID))
             .then(response => response.json())
             .then(group => {
                 this.setState(group)
