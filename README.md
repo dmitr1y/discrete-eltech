@@ -1,31 +1,48 @@
 # discrete-eltech
 
 ## Установка
-Поставьте на сервер node.js
+Измените данные доступа для mongo и приложения в `docker-compose.yaml`
 ```
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo apt-get install -y build-essential
+- MONGO_INITDB_ROOT_USERNAME=root
+- MONGO_INITDB_ROOT_PASSWORD=password
+
+
+- APP_DATABASE=user:secret@mongo:27017/evklid_db
+- GOOGLE_CLIENT_SECRET=""
+- GOOGLE_CLIENT_ID=""
+- GOOGLE_CALBACK_URL=""
+- GOOGLE_CALBACK_URL_LOGIN=""
+
 ```
 
-Скопируйте репозиторий
+Запустите docker-compose 
 ```
-git clone https://github.com/dmitr1y/discrete-eltech.git
+docker-compose up -d
 ```
-Измените данные для подключение к СУБД в файле `db.js`
+
+Зайдите в mongo
 ```
-mongoose.connect('mongodb://LOGIN:PASSWORD@SERVER:PORT/DB_NAME');
+docker-compose exec mongo bash
+mongo -u root -p --authenticationDatabase admin
 ```
-В СУБД создайте 2 коллекции
+
+В mongo создайте пользователя и 2 коллекции
 ```
-db.createCollection("students")
-db.createCollection("tests")
+use evklid_db;
+
+db.createUser(
+   {
+     user: "evklid",
+     pwd: "pass",
+     roles: [ "readWrite"]
+   }
+);
+
+db.createCollection("students");
+db.createCollection("tests");
 ```
-Зайдите в папку и запустите сервер
-```
-cd discrete-eltech
-node index
-```
+
+Теперь приложение доступно по адресу `http://localhost:8888/`
 
 ## Поставленная задача
 * нужно внимательно изучить оригинал модуля Ларина, который выложен на сайте и ПОЛНОСТЬЮ повторить его интерфейс (мы сделали в 2004 году с ним 11 версий, пока отточили все нюансы)

@@ -8,6 +8,6 @@ RUN git clone https://github.com/dmitr1y/discrete-eltech.git /usr/discrete-eltec
 
 WORKDIR /usr/discrete-eltech
 
-RUN npm i
+RUN npm install --silent
 
 CMD [ "node", "index.js" ]
