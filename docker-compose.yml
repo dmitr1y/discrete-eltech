@@ -4,16 +4,10 @@ services:
     build: .
     ports:
       - '8888:8888'
-    environment:
-      - APP_DATABASE=evklid:secret@mongo:27017/edu
-      - APP_PORT=8888
-      - APP_DOMAIN=http://localhost
-      - GOOGLE_CLIENT_SECRET=secret
-      - GOOGLE_CLIENT_ID=secret_id
-      - GOOGLE_CALBACK_URL=http://localhost/auth/google/callback
-      - GOOGLE_CALBACK_URL_LOGIN=http://localhost//login
     depends_on:
       - mongo
+    volumes:
+      - .:/usr/discrete-eltech
   mongo:
     container_name: mongo
     image: mongo:3.2

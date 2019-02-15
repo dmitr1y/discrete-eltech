@@ -1,10 +1,11 @@
-module.exports = acces = {
-    database: process.env.APP_DATABASE,
-    port: process.env.APP_PORT,
-    domain: process.env.APP_DOMAIN,
-    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    googleClientID: process.env.GOOGLE_CLIENT_ID,
-    googleCallbackURL: process.env.GOOGLE_CALBACK_URL,
-    googleCallbackURLLogin: process.env.GOOGLE_CALBACK_URL_LOGIN,
+
+module.exports = access = {
+    database: 'evklid:evklid_secret@mongo:27017/edu',
+    port: 8888,
+    domain: 'http://localhost:8888',
+    googleClientSecret: 'client_secret',
+    googleClientID: 'client_id',
+    googleCallbackURL: 'http://localhost:8888/auth/google/callback',
+    googleCallbackURLLogin: 'http://localhost:8888//login',
 };
 

@@ -1,6 +1,8 @@
 /* eslint-disable */
 const path = require('path');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const EnvironmentPlugin = require('../node_modules/webpack/lib/EnvironmentPlugin.js');
+const DefinePlugin = require('../node_modules/webpack/lib/DefinePlugin.js');
 
 module.exports = {
     entry: './app.js',
@@ -12,15 +14,27 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new WriteFilePlugin()
+        new WriteFilePlugin(),
+        new EnvironmentPlugin( { ...process.env } ),
+        new DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        }),
     ],
     module: {
         loaders: [{
             test: /\.js$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             exclude: /node_modules/,
             include: __dirname,
+            // query: {
+            //     presets: ["es2015", "react", "stage-0"]
+            // }
         }]
+    },
+    node: {
+        fs: "empty"
     }
 };
 
