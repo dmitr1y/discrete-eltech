@@ -43,135 +43,135 @@ const DevTools = createDevTools(
 );
 
 ReactDOM.render(
-    < Router
+    <Router
         history={browserHistory}>
-        < Route
+        <Route
             path="/"
             component={App}>
-            < IndexRoute
+            <IndexRoute
                 component={Home}
             />
-            < Route
+            <Route
                 path="about"
                 component={About}
             />
-            < Route
+            <Route
                 path="gcd/show"
                 component={GCDShow}
             />
-            < Route
+            <Route
                 path="gcd/trainer"
                 component={GCDTrainer}
             />
-            < Route
+            <Route
                 path="gcd/test"
                 component={GCDTest}
             />
-            < Route
+            <Route
                 path="axby1/show"
                 component={axbyShow}
             />
-            < Route
+            <Route
                 path="axby1/trainer"
                 component={axbyTrainer}
             />
-            < Route
+            <Route
                 path="axby1/test"
                 component={axbyTest}
             />
-            < Route
+            <Route
                 path="fraction/show"
                 component={FractionShow}
             />
-            < Route
+            <Route
                 path="fraction/trainer"
                 component={FractionTrainer}
             />
-            < Route
+            <Route
                 path="fraction/test"
                 component={FractionTest}
             />
-            < Route
+            <Route
                 path="convergents/show"
                 component={ConvergentsShow}
             />
-            < Route
+            <Route
                 path="convergents/trainer"
                 component={ConvergentsTrainer}
             />
-            < Route
+            <Route
                 path="convergents/test"
                 component={ConvergentsTest}
             />
-            < Route
+            <Route
                 path="inverse/show"
                 component={InverseShow}
             />
-            < Route
+            <Route
                 path="inverse/trainer"
                 component={InverseTrainer}
             />
-            < Route
+            <Route
                 path="inverse/test"
                 component={InverseTest}
             />
-            < Route
+            <Route
                 path="diophantine/show"
                 component={DiophantineShow}
             />
-            < Route
+            <Route
                 path="diophantine/trainer"
                 component={DiophantineTrainer}
             />
-            < Route
+            <Route
                 path="diophantine/test"
                 component={DiophantineTest}
             />
-            < Route
+            <Route
                 path="fastDegree/show"
                 component={FastDegreeShow}
             />
-            < Route
+            <Route
                 path="fastDegree/trainer"
                 component={FastDegreeTrainer}
             />
-            < Route
+            <Route
                 path="fastDegree/test"
                 component={FastDegreeTest}
             />
-            < Route
+            <Route
                 path="conversion/show"
                 component={ConversionShow}
             />
-            < Route
+            <Route
                 path="conversion/trainer"
                 component={ConversionTrainer}
             />
-            < Route
+            <Route
                 path="conversion/test"
                 component={ConversionTest}
             />
-            < Route
+            <Route
                 path="horner/show"
                 component={HornerShow}
             />
-            < Route
+            <Route
                 path="horner/trainer"
                 component={HornerTrainer}
             />
-            < Route
+            <Route
                 path="horner/test"
                 component={HornerTest}
             />
-            < Route
+            <Route
                 path="group/:groupID"
                 component={Group}
             />
-            < Route
+            <Route
                 path="student/:studentID"
                 component={Student}
             />
-            < Route
+            <Route
                 path="group"
                 component={Stream}
             />
