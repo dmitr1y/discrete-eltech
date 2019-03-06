@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Table from '../Table'
-import React from "react";
 import * as access from "../../../access";
 
 export default class axbyShow extends Component {
