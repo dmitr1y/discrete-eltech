@@ -18,5 +18,6 @@ export default function About() {
                 <li> Данилюк Андрей гр. 5371 ФКТИ</li>
                 <li> Уруков Серафим гр. 5371 ФКТИ</li>
             </ul>
-        </div>)
+        </div>
+    )
 }

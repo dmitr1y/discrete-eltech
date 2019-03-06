@@ -1,8 +1,7 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Toolbar from '../Toolbar'
 import getCookie from './getCookie'
-import React from "react";
 import * as access from "../../../access";
 
 export default class InverseTest extends Component {
@@ -45,19 +44,34 @@ export default class InverseTest extends Component {
             .catch(console.error)
     }
 
-    render() {
-        return (
-            <div className="content-wrap"><Toolbar smartTable={true}/><h1> Нахождение обратного числа </h1>
-                <h2> Контроль </h2>{this.state.input ?
-                    <div><p> Найти обратный элемент к{this.state.input[1]}в поле вычетов по модулю{this.state.input[0]}заполнив
-                        нужную часть таблицы расширенного алгоритма Евклида </p><code className="answer-area">Ответ : &
-                        nbsp;
-                        <div className="input-number-wrap"><input type="number" ref="output"/></div>
-                    </code>
-                        <div className="button-wrap">
-                            <button onClick={e => this.check(e)}>Проверить</button>
-                            {this.state.status !== undefined ? (this.state.status ? <i className="checker ok"></i> :
-                                <i className="checker wrong"></i>) : null}</div>
-                    </div> : null} </div>)
-    }
-};
+  render () {
+    return (
+      <div className="content-wrap">
+        <Toolbar smartTable={true}/>
+        <h1>Нахождение обратного числа</h1>
+        <h2>Контроль</h2>
+        {this.state.input ?
+          <div>
+            <p>Найти обратный элемент к {this.state.input[1]} в поле вычетов по модулю {this.state.input[0]} заполнив нужную часть таблицы расширенного алгоритма Евклида</p>
+            <code className="answer-area">
+              Ответ: &nbsp;
+              <div className="input-number-wrap">
+                <input type="number" ref="output"/>
+              </div>
+            </code>
+            <div className="button-wrap">
+              <button onClick={e => this.check(e)}>Проверить</button>
+                {this.state.status !== undefined ?
+                  (this.state.status ?
+                    <i className="checker ok"></i> : <i className="checker wrong"></i>
+                  )
+                  : null
+                }
+            </div>
+          </div>
+          : null
+        }
+      </div>
+    )
+  }
+}

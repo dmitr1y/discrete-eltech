@@ -26,13 +26,18 @@ export default class Stream extends Component {
         }
     }
 
-    render() {
-        console.log(this.state);
-        return (
-            <div id="stream-page" className="content-wrap"><h1> Группы </h1>
-                <ul className="groups">{this.state ? values(this.state).map(group => <li className="group"
-                                                                                         key={group[0]}><Link
-                    to={'/group/' + group[0]}> {group[0]} - {Stream.humans(group[1])}</Link></li>) : null}</ul>
-            </div>)
-    }
+  render () {
+    return (
+      <div id="stream-page" className="content-wrap">
+        <h1>Группы</h1>
+        <ul className="groups">
+          {this.state ? values(this.state).map(group =>
+            <li className="group" key={group[0]}>
+              <Link to={'/group/' + group[0]}>{group[0]} - {this.humans(group[1])}</Link>
+            </li>
+          ) : null}
+        </ul>
+      </div>
+    )
+  }
 }

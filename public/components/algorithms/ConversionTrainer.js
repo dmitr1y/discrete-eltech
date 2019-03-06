@@ -1,8 +1,7 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
-import React from "react";
 import * as access from "../../../access";
 
 export default class ConversionTrainer extends Component {
@@ -41,52 +40,37 @@ export default class ConversionTrainer extends Component {
         }
     }
 
-    render() {
-        return (
-            <div
-                className="content-wrap">
-                <Toolbar/>
-                <h1> Перевод из одной системы счисления в другую </h1>
-                <h2> Тренажёр </h2>
-                {
-                    this.state.input ?
-                        <div>
-                            <p>
-                                Певевести {this.state.input[0]}<sub> {this.state.input[1]}</sub> в систему
-                                счисления с основанием {this.state.input[2]}
-                            </p>
-                            <Table data={this.state.table.map(row => row.map(col => col !== '' ? (
-                                    <div className="input-number-wrap">
-                                        <input type="number" data-original={col} onBlur={e =>
-                                            this.check(e)
-                                        }
-                                        />
-                                        <i className="checker">
-                                        </i>
-                                    </div>
-                                ) :
-                                null
-                            ))
-                            }
-                            />
-                            <code className="answer-area">
-                                Ответ: &nbsp;
-                                <div className="input-number-wrap">
-                                    <input type="number" data-original={this.state.output}
-                                           onBlur={e => this.check(e)}
-                                    />
-                                    <i className="checker">
-                                    </i>
-                                </div>
-                            </code>
-                            <div className="button-wrap">
-                                <button onClick={e => this.refreshExample()}> Обновить</button>
-                            </div>
-                        </div>
-                        :
-                        null
-                }
+  render () {
+    return (
+      <div className="content-wrap">
+        <Toolbar />
+        <h1>Перевод из одной системы счисления в другую</h1>
+        <h2>Тренажёр</h2>
+        {this.state.input ?
+          <div>
+            <p>Певевести {this.state.input[0]}<sub>{this.state.input[1]}</sub> в систему счисления с основанием {this.state.input[2]}</p>
+            <Table data={this.state.table.map(row => row.map(col =>
+              col !== '' ? (
+                <div className="input-number-wrap">
+                  <input type="number" data-original={col} onBlur={e => this.check(e)}/>
+                  <i className="checker"></i>
+                </div>
+              ) : null
+            ))}/>
+            <code className="answer-area">
+              Ответ: &nbsp;
+              <div className="input-number-wrap">
+                <input type="number" data-original={this.state.output} onBlur={e => this.check(e)}/>
+                <i className="checker"></i>
+              </div>
+            </code>
+            <div className="button-wrap">
+              <button onClick={e => this.refreshExample()}>Обновить</button>
             </div>
-        )
-    }
+          </div>
+          : null
+        }
+      </div>
+    )
+  }
 }

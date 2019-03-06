@@ -1,7 +1,7 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
-import React from "react";
+import Toolbar from '../Toolbar'
 import * as access from "../../../access";
 
 export default class HornerTrainer extends Component {
@@ -40,26 +40,42 @@ export default class HornerTrainer extends Component {
         }
     }
 
-    polynomial(factors) {
-        return factors.map((c, i) => {
-            let power = factors.length - i - 1;
-            return c != 0 ? (
-                <span>{c < 0 ? '-' : i > 0 ? '+' : ''}{Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''}{power > 1 ?
-                    <span> x <sup> {power}</sup></span> : power == 1 ? 'x' : ''}</span>) : ''
-        })
-    }
+  polynomial (factors) {
+    return factors.map((c, i) => {
+      let power = factors.length - i - 1
+      return c != 0 ? (
+        <span>
+          {c < 0 ? '-' : i > 0 ? '+' : ''}
+          {Math.abs(c) !== 1 || power === 0 ? Math.abs(c) : ''}
+          {power > 1 ? <span>x<sup>{power}</sup></span> : power == 1 ? 'x' : ''}
+        </span>) : ''
+    })
+  }
 
-    render() {
-        return (<div className="content-wrap"><Toolbar/><h1> Схема Горнера </h1><h2> Тренажёр </h2>{this.state.input ?
-            <div><p> Поделим многочлен{this.polynomial(this.state.input[0])}на бином
-                ({this.polynomial([1, -1 * this.state.input[1]])})</p><Table
-                data={this.state.table.map(row => row.map(col => col !== '' ? (
-                    <div className="input-number-wrap"><input type="number" data-original={col}
-                                                              onBlur={e => this.check(e)}/>
-                        <i className="checker"></i></div>) : null))}/>
-                <div className="button-wrap">
-                    <button onClick={e => this.refreshExample()}> Обновить</button>
+  render () {
+    return (
+      <div className="content-wrap">
+        <Toolbar />
+        <h1>Схема Горнера</h1>
+        <h2>Тренажёр</h2>
+        {this.state.input ?
+          <div>
+            <p>Поделим многочлен {this.polynomial(this.state.input[0])} на бином ({this.polynomial([1, -1 * this.state.input[1]])})</p>
+            <Table data={this.state.table.map(row => row.map(col =>
+              col !== '' ? (
+                <div className="input-number-wrap">
+                  <input type="number" data-original={col} onBlur={e => this.check(e)}/>
+                  <i className="checker"></i>
                 </div>
-            </div> : null} </div>)
-    }
-};
+              ) : null
+            ))}/>
+            <div className="button-wrap">
+              <button onClick={e => this.refreshExample()}>Обновить</button>
+            </div>
+          </div>
+          : null
+        }
+      </div>
+    )
+  }
+}

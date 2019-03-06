@@ -56,7 +56,6 @@ export default class Toolbar extends Component {
                     input.innerHTML = newString;
                 } else if (currentString.length === 0) {
                     // if first key pressed is an opearator, don't do anything
-                    console.log("enter a number first");
                 } else {
                     // else just add the operator pressed to the input
                     input.innerHTML += e.target.innerHTML;
@@ -77,11 +76,6 @@ export default class Toolbar extends Component {
             // forming an array of operators. for above string it will be: operators = ["+", "+", "-", "*", "/"]
             // first we replace all the numbers and dot with empty string and then split
             var operators = inputString.replace(/[0-9]|\./g, "").split("");
-
-            console.log(inputString);
-            console.log(operators);
-            console.log(numbers);
-            console.log("----------------------------");
 
             // now we are looping through the array and doing one operation at a time.
             // first divide, then multiply, then subtraction and then addition
@@ -136,65 +130,68 @@ export default class Toolbar extends Component {
         })
     }
 
-    render() {
+    render () {
         return (
-            <div className="panel-group" ref="root">{this.props.smartTable ? <div className="panel panel-default">
-                <div className="panel-heading">
-                    <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse"
-                            onClick={e => this.toggle(e)}>Расширенный алгоритм Евклида
-                    </button>
-                </div>
-                <div className="panel-collapse collapse out">
-                    <div className="panel-body"><SmartTable/></div>
-                </div>
-            </div> : null}
+            <div className="panel-group" ref="root">
+                {this.props.smartTable ?
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse" onClick={e => this.toggle(e)}>Расширенный алгоритм Евклида</button>
+                        </div>
+                        <div className="panel-collapse collapse out">
+                            <div className="panel-body">
+                                <SmartTable />
+                            </div>
+                        </div>
+                    </div>
+                    : null
+                }
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse"
-                                onClick={e => this.toggle(e)}>Калькулятор
-                        </button>
+                        <button type="button" className="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse" onClick={e => this.toggle(e)}>Калькулятор</button>
                     </div>
                     <div className="panel-collapse collapse out">
                         <div className="panel-body">
                             <div className="calculator">
-                                <div className="input" id="input"></div>
-                                <div className="buttons">
-                                    <div className="operators">
-                                        <div> +</div>
-                                        <div> -</div>
-                                        <div> & times;</div>
-                                        <div> & divide;</div>
-                                        <div> & #37;</div>
-                                    </div>
-                                    <div className="leftPanel">
-                                        <div className="numbers">
-                                            <div> 7</div>
-                                            <div> 8</div>
-                                            <div> 9</div>
-                                        </div>
-                                        <div className="numbers">
-                                            <div> 4</div>
-                                            <div> 5</div>
-                                            <div> 6</div>
-                                        </div>
-                                        <div className="numbers">
-                                            <div> 1</div>
-                                            <div> 2</div>
-                                            <div> 3</div>
-                                        </div>
-                                        <div className="numbers">
-                                            <div> 0</div>
-                                            <div>.</div>
-                                            <div id="clear"> C</div>
-                                        </div>
-                                    </div>
-                                    <div className="equal" id="result">=</div>
+                              <div className="input" id="input"></div>
+                              <div className="buttons">
+                                <div className="operators">
+                                  <div>+</div>
+                                  <div>-</div>
+                                  <div>&times;</div>
+                                  <div>&divide;</div>
+                                  <div>&#37;</div>
                                 </div>
+                                <div className="leftPanel">
+                                  <div className="numbers">
+                                    <div>7</div>
+                                    <div>8</div>
+                                    <div>9</div>
+                                  </div>
+                                  <div className="numbers">
+                                    <div>4</div>
+                                    <div>5</div>
+                                    <div>6</div>
+                                  </div>
+                                  <div className="numbers">
+                                    <div>1</div>
+                                    <div>2</div>
+                                    <div>3</div>
+                                  </div>
+                                  <div className="numbers">
+                                    <div>0</div>
+                                    <div>.</div>
+                                    <div id="clear">C</div>
+                                  </div>
+                                </div>
+                                <div className="equal" id="result">=</div>
+                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>)
+            </div>
+        )
     }
 }
 Toolbar.propTypes = {smartTable: React.PropTypes.bool};

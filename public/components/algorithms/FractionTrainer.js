@@ -1,8 +1,7 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../Table'
 import Toolbar from '../Toolbar'
-import React from "react";
 import * as access from "../../../access";
 
 export default class FractionTrainer extends Component {
@@ -41,19 +40,31 @@ export default class FractionTrainer extends Component {
         }
     }
 
-    render() {
-        return (
-            <div className="content-wrap"><Toolbar/><h1> Разложение в цепную дробь </h1>
-                <h2> Тренажёр </h2>{this.state.input ?
-                    <div><p> Дана дробь{this.state.input[0]}/{this.state.input[1]}</p>
-                        <p> Возьмем{this.state.input[0]}и{this.state.input[1]}и применим алгоритм Евклида, получим
-                            следующую таблицу:</p><Table data={this.state.table.map(row => row.map(col => col !== '' ? (
-                            <div className="input-number-wrap"><input type="number" data-original={col}
-                                                                      onBlur={e => this.check(e)}/>
-                                <i className="checker"></i></div>) : null))}/>
-                        <div className="button-wrap">
-                            <button onClick={e => this.refreshExample()}> Обновить</button>
-                        </div>
-                    </div> : null} </div>)
-    }
-};
+  render () {
+    return (
+      <div className="content-wrap">
+        <Toolbar />
+        <h1>Разложение в цепную дробь</h1>
+        <h2>Тренажёр</h2>
+        {this.state.input ?
+          <div>
+            <p>Дана дробь {this.state.input[0]}/{this.state.input[1]}</p>
+            <p>Возьмем {this.state.input[0]} и {this.state.input[1]} и применим алгоритм Евклида, получим следующую таблицу:</p>
+            <Table data={this.state.table.map(row => row.map(col =>
+              col !== '' ? (
+                <div className="input-number-wrap">
+                  <input type="number" data-original={col} onBlur={e => this.check(e)}/>
+                  <i className="checker"></i>
+                </div>
+              ) : null
+            ))}/>
+            <div className="button-wrap">
+              <button onClick={e => this.refreshExample()}>Обновить</button>
+            </div>
+          </div>
+          : null
+        }
+      </div>
+    )
+  }
+}
